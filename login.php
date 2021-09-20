@@ -1,7 +1,10 @@
 <?php
-        include 'modells/pdoconn.class.php';
+session_start();
+        include 'modells/modell.pdoconn.class.php';
+            include 'modells/modell.login.class.php';   
 
         $conn = new PDOConn();
+            $login = new Bejelentkezes();
 ?>
 
 <!DOCTYPE html>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,15 @@
 </head>
 <body>
 
-    <h1>Üdvözlöm!</h1>
+    <?php
+        if (!isset($_SESSION['id'])) {
+            echo 'Nincs bejelentkezve';
+        } else {
+            echo 'Be van jelentkezve';
+        }
+    ?>
+
+    <h1>Üdvözlöm, <?php echo $_SESSION['id']; ?></h1>
     
 </body>
 </html>

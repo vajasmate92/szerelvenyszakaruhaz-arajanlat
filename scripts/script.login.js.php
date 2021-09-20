@@ -3,6 +3,8 @@
     <?php include 'scripts/script.const.inputfield.js.php'; ?>
             <?php include 'scripts/script.const.hibauzenetablak.js.php'; ?>
 
+    $ ( document ).ready ( () => {
+        
     let visszatertErtek;
         let hibakSzama = 0;
             hibaUzenetAblak.hide();
@@ -14,7 +16,7 @@
                         hibakSzama = 0;
         })
 
-    inputMezok.click( () => {
+    inputMezok.click(() => {
         inputMezok.removeClass("border-danger");
             hibaUzenetAblak.hide();
     });
@@ -44,36 +46,35 @@
                                     email: inputEmail.val(),
                                         jelszo: inputJelszo.val()
                             },
+                            dataType: 'json',
                                 cache: false,
                                     async: false,
                                         scriptCharset: "UTF-8",
                                             success: function(data) {
                                                 if(data == 1) {
                                                     hibaUzenetAblak.show();
-                                                        hibaUzenetAblak.show();
-                                                            uzenetLista.append("<li>Hibás e-mail cím!</li>");  
-                                                                inputEmail.addClass("border-danger");
-                                                                    event.preventDefault();
+                                                    hibaUzenetAblak.show();
+                                                    uzenetLista.append("<li>Hibás e-mail cím!</li>");  
+                                                    inputEmail.addClass("border-danger");
+                                                    $("body").load("controllers/control.login.php");
                                                 } else if (data == 2) {
                                                     hibaUzenetAblak.show();
-                                                        hibaUzenetAblak.show();
-                                                            uzenetLista.append("<li>Hibás jelszó!</li>");  
-                                                                inputJelszo.addClass("border-danger");
-                                                                    event.preventDefault();
+                                                    hibaUzenetAblak.show();
+                                                    uzenetLista.append("<li>Hibás jelszó!</li>");  
+                                                    inputJelszo.addClass("border-danger");
+                                                    $("body").load("controllers/control.login.php");
                                                 } else if (data == 3) {
                                                     hibaUzenetAblak.show();
-                                                        hibaUzenetAblak.show();
-                                                            uzenetLista.append("<li>Ez a felhasználó még nem lett aktiválva!</li>");  
-                                                                inputEmail.addClass("border-danger");
-                                                                    event.preventDefault();
-                                                }
-                                                 else {
-                                                    $("body").load("components/component.test.php");
-                                                        hibakSzama = 0;
+                                                    hibaUzenetAblak.show();
+                                                    uzenetLista.append("<li>Ez a felhasználó még nem lett aktiválva!</li>");  
+                                                    inputEmail.addClass("border-danger");
+                                                    $("body").load("controllers/control.login.php");
                                                 }
                     }
                 });
             }
     });
+    })
+
     
 </script>

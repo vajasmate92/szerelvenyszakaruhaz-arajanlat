@@ -1,6 +1,6 @@
 <?php 
-include '../modells/pdoconn.class.php';
-include '../modells/upload.class.php';
+include '../modells/modell.pdoconn.class.php';
+include '../modells/modell.upload.class.php';
 $upload = new Upload();
 
   if (isset($_POST['gyartoHozzaadGomb']) && !empty($_POST['gyartoHozzaad'])) {  

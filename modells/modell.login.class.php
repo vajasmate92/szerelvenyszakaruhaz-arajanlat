@@ -25,6 +25,17 @@ class Bejelentkezes extends PDOConn {
         }
     }
 
+    public function sessionID($email) {
+        $sql = "SELECT `PK_id` FROM `arajanlatok`.`felhasznalok` WHERE `email` LIKE '".$email."'";
+                    $stmt = $this -> pdoConnect() -> prepare($sql);
+                        $stmt -> bindParam(":email", $emailCheck);
+                            $emailCheck = $email;
+                                $stmt -> execute();
+                                    $fetchedID = $stmt -> fetch(PDO::FETCH_ASSOC);
+                                    
+        return intval($fetchedID['pk_id']);
+    }
+
     public function bejelentkezesIgenyBekuldese($email, $jelszo) {
 
         filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);

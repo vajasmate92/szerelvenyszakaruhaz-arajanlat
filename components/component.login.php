@@ -14,6 +14,6 @@
       <label>
         <input type="checkbox" value="remember-me">Bejelentkezési adatok megjegyzése</label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary gomb" type="button">Bejelentkezés</button>
+    <button class="w-100 btn btn-lg btn-primary gomb">Bejelentkezés</button>
   </form>
 </main>

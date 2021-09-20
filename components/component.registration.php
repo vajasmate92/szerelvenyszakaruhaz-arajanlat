@@ -19,6 +19,6 @@
         <label for="jelszoEllenorzes">Jelszó mégegyszer</label>
       </div>
         <div class="checkbox mb-3"></div>
+      </form>  
           <button type="button" class="w-100 btn btn-lg btn-primary gomb">Regisztrációs igény küldése</button>
-    </form>  
 </main>

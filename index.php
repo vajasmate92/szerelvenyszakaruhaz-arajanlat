@@ -1,5 +1,5 @@
 <?php 
-include 'modells/pdoconn.class.php';
+include 'modells/modell.pdoconn.class.php';
 include 'view/view.class.php';
 $conn = new PDOConn();
 $view = new View();

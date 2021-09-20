@@ -1,8 +1,15 @@
 <?php
-    include '../modells/pdoconn.class.php';
-                include '../modells/login.class.php';   
+    session_start ();
+        include '../modells/modell.pdoconn.class.php';
+                    include '../modells/modell.login.class.php';   
 
-    $login = new Bejelentkezes();
+    $login = new Bejelentkezes ();
 
-        $login -> bejelentkezesIgenyBekuldese($_POST['email'], $_POST['jelszo']);
+    $_POST['email'] = $email;
+    $_POST['jelszo'] = $jelszo;
+
+        $login -> bejelentkezesIgenyBekuldese($email, $jelszo);
+            $loginId = $login -> sessionID($email);
+                $_SESSION['id'] = $loginId;
+                    //header ('Location: ../vizsgamunka-2/administration.php');
 

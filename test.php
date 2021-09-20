@@ -1,9 +1,10 @@
 <?php 
-include 'modells/pdoconn.class.php';
-include 'modells/login.class.php';
+session_start();
+include 'modells/modell.pdoconn.class.php';
+include 'modells/modell.login.class.php';
 $conn = new PDOConn();
 
-$login = new bejelentkezes();
+$login = new Bejelentkezes();
 
 
 ?>
@@ -23,10 +24,21 @@ $login = new bejelentkezes();
             <input type="submit" value="Teszt" name="submit">
         </form>
         <?php
-            if (isset($_POST['email']) && $_POST['jelszo'] && $_POST['submit'] && !empty($_POST['email']) && !empty($_POST['jelszo'])) {
+            if (isset($_POST['email']) && isset($_POST['jelszo']) && !empty($_POST['email']) && !empty($_POST['jelszo'])) {
 
                 $login -> bejelentkezesIgenyBekuldese($_POST['email'], $_POST['jelszo']);
+                //$_SESSION['id'] = $login -> sessionID($_POST['email']);
+                //echo $_SESSION['id'];
+                $loginId = $login -> sessionID($_POST['email']);
+                $_SESSION['id'] = $loginId;
+                header ('Location: components/component.test.php');
+                
             }
+            
+                //header('Location: components/component.test.php')
+            // if (isset($_POST['email']) && $_POST['jelszo'] && $_POST['submit'] && !empty($_POST['email']) && !empty($_POST['jelszo'])) {
+
+            // }
             ?>
     
 </body>

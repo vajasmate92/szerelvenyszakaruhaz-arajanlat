@@ -1,7 +1,13 @@
 <?php
-    include '../modells/pdoconn.class.php';
-                include '../modells/registration.class.php';
+    include '../modells/modell.pdoconn.class.php';
+                include '../modells/modell.registration.class.php';
                
     $registration = new Registration();
 
-    $registration -> regisztraciosIgenyBekuldese($_POST['nev'], $_POST['email'], $_POST['jelszo']);
+    $emailCimEll = $registration -> foglaltEAzEmailCim ( $_POST [ 'email' ] );
+
+    if ( $emailCimEll ) {
+        $registration -> regisztraciosIgenyBekuldese ( $_POST [ 'nev' ], $_POST [ 'email' ], $_POST  [ 'jelszo' ] );
+    }
+
+    //$registration -> regisztraciosIgenyBekuldese($_POST['nev'], $_POST['email'], $_POST['jelszo']);
