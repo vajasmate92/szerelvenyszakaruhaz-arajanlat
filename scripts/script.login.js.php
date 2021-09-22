@@ -1,80 +1,88 @@
 <script>
-
+    $ ( document ) . ready ( () => {
     <?php include 'scripts/script.const.inputfield.js.php'; ?>
             <?php include 'scripts/script.const.hibauzenetablak.js.php'; ?>
 
-    $ ( document ).ready ( () => {
+            let hiba = false;
         
-    let visszatertErtek;
-        let hibakSzama = 0;
-            hibaUzenetAblak.hide();
+            hibaUzenetAblak . hide ();
 
-        inputMezok.click( () => {
-            hibaUzenetAblak.hide();
-                uzenetLista.empty();
-                    inputMezok.removeClass("border-danger");
-                        hibakSzama = 0;
+        inputMezok . click ( () => {
+
+            hibaUzenetAblak . hide ();
+                uzenetLista . empty ();
+                    inputMezok . removeClass ( "border-danger" );
+                        hiba = false;
+
         })
 
-    inputMezok.click(() => {
-        inputMezok.removeClass("border-danger");
-            hibaUzenetAblak.hide();
-    });
+    gomb . click ( () => {
+        uzenetLista . empty ();
+        if ( inputEmail . val () . length <= 0 ) {
 
-    gomb.click ( () => {
-        uzenetLista.empty();
-        if ( inputEmail.val().length <= 0 ) {
-            uzenetLista.append("<li>Az email cím nincs kitöltve!</li>");
-                inputEmail.addClass("border-danger");
-                    hibakSzama++;
-                        event.preventDefault();
+            uzenetLista . append("<li>Az email cím nincs kitöltve!</li>");
+                inputEmail . addClass("border-danger");
+                    hiba = true;
+
                 }
-        if ( inputJelszo.val().length <= 0 ) {
-            uzenetLista.append("<li>A jelszó cím nincs kitöltve!</li>");
-                inputJelszo.addClass("border-danger");
-                    hibakSzama++;
-                        event.preventDefault();
+        if ( inputJelszo . val () . length <= 0 ) {
+
+            uzenetLista . append("<li>A jelszó cím nincs kitöltve!</li>");
+                inputJelszo . addClass("border-danger");
+                    hiba = true;
+
                 }
         
-        if (!hibakSzama == 0) {
-            hibaUzenetAblak.show();
+        if ( hiba ) {
+
+            hibaUzenetAblak . addClass ( "alert alert-danger alert-dismissible fade show" );
+                hibaUzenetAblak . show ();
+
         }  else {
-                $.ajax({
-                    type: "POST",
-                        url: "controllers/control.login.php",
-                            data: {
-                                    email: inputEmail.val(),
-                                        jelszo: inputJelszo.val()
-                            },
-                            dataType: 'json',
-                                cache: false,
-                                    async: false,
-                                        scriptCharset: "UTF-8",
-                                            success: function(data) {
-                                                if(data == 1) {
-                                                    hibaUzenetAblak.show();
-                                                    hibaUzenetAblak.show();
-                                                    uzenetLista.append("<li>Hibás e-mail cím!</li>");  
-                                                    inputEmail.addClass("border-danger");
-                                                    $("body").load("controllers/control.login.php");
-                                                } else if (data == 2) {
-                                                    hibaUzenetAblak.show();
-                                                    hibaUzenetAblak.show();
-                                                    uzenetLista.append("<li>Hibás jelszó!</li>");  
-                                                    inputJelszo.addClass("border-danger");
-                                                    $("body").load("controllers/control.login.php");
-                                                } else if (data == 3) {
-                                                    hibaUzenetAblak.show();
-                                                    hibaUzenetAblak.show();
-                                                    uzenetLista.append("<li>Ez a felhasználó még nem lett aktiválva!</li>");  
-                                                    inputEmail.addClass("border-danger");
-                                                    $("body").load("controllers/control.login.php");
-                                                }
-                    }
-                });
+            
+            var elkuldottAdatok = $ ( 'form' ) . serialize ();
+                // console . log ( elkuldottAdatok );
+                $ . post ( "controllers/control.login.php", elkuldottAdatok, ( data ) => {
+
+                    console . log ( data );
+
+                    if ( data == 'Ez az email cím nem létezik' ) {
+
+                        uzenetLista . append ( "<li>" + data +"</li>" );
+                            hibaUzenetAblak . addClass( "alert alert-danger alert-dismissible fade show" );
+                                inputEmail . addClass ( "border-danger" );
+                                    hibaUzenetAblak . show ();
+                                        hiba = true;
+
+                    } if ( data == 'A jelszó nem helyes a megadott email címhez' ) {
+
+                        uzenetLista . append ( "<li>" + data +"</li>" );
+                            hibaUzenetAblak . addClass ( "alert alert-danger alert-dismissible fade show" );
+                                inputEmail . addClass ( "border-danger") ;
+                                    hibaUzenetAblak . show ();
+                                        hiba = true;
+
+                    } if ( data == 'A felhasználó nincs aktiválva!' ) {
+
+                        uzenetLista . append ( "<li>" + data +"</li>" );
+                            hibaUzenetAblak . addClass ( "alert alert-danger alert-dismissible fade show" );
+                                inputEmail . addClass ( "border-danger" );
+                                    hibaUzenetAblak . show ();
+                                        hiba = true;
+
+                    } if ( data == 'OK' ) {
+                        
+                        window. location . assign ( 'administration.php' );
+
+                            };
+                        }
+                    )
+                }
             }
-    });
-    })
+        )
+    }
+);
+
 
     
 </script>

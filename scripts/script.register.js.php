@@ -3,10 +3,7 @@
     $( document ).ready ( () => {
     <?php include 'scripts/script.const.hibauzenetablak.js.php'; ?>
         <?php include 'scripts/script.const.inputfield.js.php'; ?>
-        
-  
 
-    
             hibaUzenetAblak.hide();
     let hiba = false;
 
@@ -48,20 +45,24 @@
                             }
 
             if ( hiba ) {
-            hibaUzenetAblak.show();
+                hibaUzenetAblak.show();
+                hibaUzenetAblak.addClass( "alert alert-danger alert-dismissible fade show" );
             }
             if ( !hiba ) {
-                var regisztraciosAdatok = $( 'form#registracioForm' ).serialize();
-                console.log ( regisztraciosAdatok );
-                $.post( 'controllers/control.registration.php', regisztraciosAdatok, ( data ) => { 
+                var elkuldottAdatok = $( 'form#registracioForm' ).serialize();
+                // console.log ( elkuldottAdatok );
+                $.post( 'controllers/control.registration.php', elkuldottAdatok, ( data ) => { 
                     if ( data == 'Ezzel az e-mail címmel már regisztráltak!' ) {
-                        uzenetLista.append("<li>Ezzel az e-mail címmel már regisztráltak!</li>");
-                            inputEmail.addClass("border-danger");
-                                hibaUzenetAblak.show();
-                                    hiba = true;
+                            uzenetLista.append("<li>" + data +"</li>");
+                                hibaUzenetAblak.addClass( "alert alert-danger alert-dismissible fade show" );
+                                    inputEmail.addClass("border-danger");
+                                        hibaUzenetAblak.show();
+                                            hiba = true;
                     }
                     if ( data == 'Fogadtuk a regisztrációs kérelmed!' ) {
-                        myModal.show();
+                            uzenetLista.append("<li>" + data +"</li>");
+                                hibaUzenetAblak.addClass( "alert alert-success alert-dismissible fade show" );
+                                        hibaUzenetAblak.show();
                     }
                  } );
             }

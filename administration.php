@@ -13,7 +13,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kezelői felület</title>
     <?php include 'links/link.bootstrap.css.php' ?>
-        <link rel="stylesheet" href="style/style.administration.css">
 </head>
 <body>
 

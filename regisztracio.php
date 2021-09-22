@@ -19,11 +19,6 @@
                             <link rel="stylesheet" href="style/style.form.css">
     </head>
     <body>
-        <div>
     <?php include 'components/component.registration.php'; ?>
-    </div>
-        <?php include 'components/component.modal.sikeresregisztracio.php';
-                include 'links/link.bootstrap.js.php';
-        ?>
     </body>
 </html>

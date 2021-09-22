@@ -21,4 +21,5 @@
         <div class="checkbox mb-3"></div>
       </form>  
           <button type="button" class="w-100 btn btn-lg btn-primary gomb">Regisztrációs igény küldése</button>
-</main>
+        </main>
+        

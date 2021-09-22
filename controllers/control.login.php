@@ -5,11 +5,22 @@
 
     $login = new Bejelentkezes ();
 
-    $_POST['email'] = $email;
-    $_POST['jelszo'] = $jelszo;
+    $emailCimEllenorzes = $login -> letezikEAzEmailCim ( $_POST [ "email" ] ) ;
 
-        $login -> bejelentkezesIgenyBekuldese($email, $jelszo);
-            $loginId = $login -> sessionID($email);
-                $_SESSION['id'] = $loginId;
-                    //header ('Location: ../vizsgamunka-2/administration.php');
+    if ( $emailCimEllenorzes ) {
+        
+        $jelszoEllenorzes = $login -> helyesEAJelszo ( $_POST [ "email" ] , $_POST [ "jelszo" ] ) ;
+
+        if ( $jelszoEllenorzes ) {
+
+            $felhasznaloAllapotEllenorzes = $login -> felhasznaloAllapot ( $_POST [ "email" ] ) ;
+
+            if ( $felhasznaloAllapotEllenorzes ) {
+
+                $sessionID = $login -> sessionIDLekerese ( $_POST [ "email" ] ) ;
+                $_SESSION [ 'id' ] = $sessionID;
+                echo 'OK';
+            }
+        }
+    }
 

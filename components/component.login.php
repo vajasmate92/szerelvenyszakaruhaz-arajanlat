@@ -1,6 +1,6 @@
 <main class="form-signin">
   <?php include 'components/component.alert.php' ?>
-  <form method="POST">
+  <form>
     <h1 class="h3 mb-3 fw-normal">Bejelentkezés</h1>
     <div class="form-floating my-2">
       <input type="email" class="form-control" name="email">
@@ -14,6 +14,6 @@
       <label>
         <input type="checkbox" value="remember-me">Bejelentkezési adatok megjegyzése</label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary gomb">Bejelentkezés</button>
   </form>
+  <button class="w-100 btn btn-lg btn-primary gomb">Bejelentkezés</button>
 </main>
