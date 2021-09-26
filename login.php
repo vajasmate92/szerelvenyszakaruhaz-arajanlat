@@ -1,5 +1,8 @@
 <?php
 session_start();
+if ( isset ( $_SESSION [ 'id' ] ) ) {
+    header ( 'Location:administration.php' );
+}
         include 'modells/modell.pdoconn.class.php';
             include 'modells/modell.login.class.php';   
 

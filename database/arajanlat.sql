@@ -23,8 +23,9 @@ CREATE TABLE `arajanlatok`.`adminisztratorok`(
 CREATE TABLE `arajanlatok`.`partnerek`(
     `PK_id` INT(8) NOT NULL AUTO_INCREMENT,
     `ceg_nev` VARCHAR(255) NOT NULL,
-    `ceg_cim_irsz` INT(4) NOT NULL,
+    `ceg_telefonszam` INT(11) NOT NULL,
     `ceg_cim_adoszam` INT(11) NOT NULL,
+    `ceg_cim_irsz` INT(4) NOT NULL,
     `ceg_cim_varos` VARCHAR(255) NOT NULL,
     `ceg_cim_utca_hazszam` VARCHAR(255) NOT NULL,
     `ceg_szallitolevel_limit` INT(8) NOT NULL,

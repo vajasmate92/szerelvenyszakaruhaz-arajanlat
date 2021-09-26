@@ -30,4 +30,17 @@ class View extends PDOConn {
             echo '<option value="' . $row['id'] . '" >' . $row['termekcsoport'] . '</option>';
         }
     }
+
+    public function partnerMezoKitoltes ( $id ) {
+       
+        $id = intval ( $id );
+
+        $sql = "SELECT `nev`, `email` FROM `arajanlatok`.`felhasznalok` WHERE `PK_id` LIKE :id;" ;
+            $stmt = $this -> pdoConnect () -> prepare ( $sql ) ;
+                $stmt -> bindParam ( ":id" , $id ) ;
+                        $stmt -> execute () ;
+                            $felhasznaloNev = $stmt -> fetch () ;       
+                
+        return $felhasznaloNev;
+    }
 }

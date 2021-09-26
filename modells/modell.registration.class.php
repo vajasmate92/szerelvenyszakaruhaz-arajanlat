@@ -41,8 +41,8 @@ class Registration extends PDOConn {
                     $nevTemp = $nev;
                         $jelszoSalt = sha1(mt_rand());
                             $jelszoTemp = sha1($jelszo).$jelszoSalt;
-                                $jogosultsag = 1;
-                                    $allapot = 1;
+                                $jogosultsag = 0;
+                                    $allapot = 0;
                         
                 $stmt -> execute();
                         

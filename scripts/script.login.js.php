@@ -72,7 +72,7 @@
 
                     } if ( data == 'OK' ) {
                         
-                        window. location . assign ( 'administration.php' );
+                        window . location . assign ( 'administration.php' );
 
                             };
                         }
