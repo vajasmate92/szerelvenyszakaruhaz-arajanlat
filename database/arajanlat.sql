@@ -23,8 +23,8 @@ CREATE TABLE `arajanlatok`.`adminisztratorok`(
 CREATE TABLE `arajanlatok`.`partnerek`(
     `PK_id` INT(8) NOT NULL AUTO_INCREMENT,
     `ceg_nev` VARCHAR(255) NOT NULL,
-    `ceg_telefonszam` INT(11) NOT NULL,
-    `ceg_cim_adoszam` INT(11) NOT NULL,
+    `ceg_telefonszam` BIGINT(11) NOT NULL,
+    `ceg_cim_adoszam` BIGINT(11) NOT NULL,
     `ceg_cim_irsz` INT(4) NOT NULL,
     `ceg_cim_varos` VARCHAR(255) NOT NULL,
     `ceg_cim_utca_hazszam` VARCHAR(255) NOT NULL,
@@ -32,7 +32,6 @@ CREATE TABLE `arajanlatok`.`partnerek`(
     `ceg_kedvezmeny_merteke` INT(3) NOT NULL,
     `FK_felhasznalo_id` INT(8) NOT NULL,
     `FK_letrehozo_admin_id` INT(8) NOT NULL,
-    `allapot` INT(1) NOT NULL,
     PRIMARY KEY (`PK_id`),
     FOREIGN KEY (`FK_felhasznalo_id`) REFERENCES `arajanlatok`.`felhasznalok`(`PK_id`),
     FOREIGN KEY (`FK_letrehozo_admin_id`) REFERENCES `arajanlatok`.`adminisztratorok`(`PK_id`)

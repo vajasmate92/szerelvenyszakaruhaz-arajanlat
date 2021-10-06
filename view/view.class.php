@@ -31,16 +31,25 @@ class View extends PDOConn {
         }
     }
 
-    public function partnerMezoKitoltes ( $id ) {
-       
-        $id = intval ( $id );
+    public function felhasznaloMezoKitoltes ( $id ) {
 
         $sql = "SELECT `nev`, `email` FROM `arajanlatok`.`felhasznalok` WHERE `PK_id` LIKE :id;" ;
             $stmt = $this -> pdoConnect () -> prepare ( $sql ) ;
                 $stmt -> bindParam ( ":id" , $id ) ;
                         $stmt -> execute () ;
-                            $felhasznaloNev = $stmt -> fetch () ;       
-                
-        return $felhasznaloNev;
+                            $felhasznaloAdatok = $stmt -> fetch () ;
+        
+        return $felhasznaloAdatok;
+    }
+
+    public function partnerMezoKitoltes ( $id ) {
+        
+        $sql = "SELECT `ceg_nev`, `ceg_telefonszam`, `ceg_cim_adoszam`, `ceg_cim_irsz`, `ceg_cim_varos`, `ceg_cim_utca_hazszam`, `ceg_szallitolevel_limit`, `ceg_kedvezmeny_merteke`, `FK_felhasznalo_id`, `FK_letrehozo_admin_id` FROM `arajanlatok`.`partnerek` WHERE `FK_felhasznalo_id` LIKE :id";
+                $stmt = $this -> pdoConnect () -> prepare ( $sql );
+                    $stmt -> bindParam ( ":id" , $id );
+                        $stmt -> execute ();
+                            $partnerAdatok = $stmt -> fetch ();
+
+        return $partnerAdatok;
     }
 }

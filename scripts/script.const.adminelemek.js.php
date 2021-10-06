@@ -1,4 +1,5 @@
 const jovahagyasGomb =  $ ( 'button#jovahagyasGomb' );
+    const partnerSzerkesztesGomb =  $ ( 'button#partnerSzerkesztesGomb' );
 
 const partnerNev = $ ( 'input#partnerNev' );
     const partnerCegNev = $ ( 'input#partnerCegNev' );

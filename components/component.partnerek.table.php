@@ -16,18 +16,28 @@
   <tbody>
 <?php 
 for ( $i = 0 ; $i < count ( $tablazatTomb ) ; $i++ ) {
-    if ( $tablazatTomb [ $i ] [ 'jogosultsag' ] == '0' ) {
+    if ( $tablazatTomb [ $i ] [ 'jogosultsag' ] == 0 ) {
         echo '<tr>';
             echo '<td class="text-center">' . $tablazatTomb [ $i ] [ 'nev' ] . '</td>';
                 echo '<td class="text-center">' . $tablazatTomb [ $i ] [ 'email' ] . '</td>';
-        if ( $tablazatTomb [ $i ] [ 'allapot' ] == '0' ) {
+        if ( $tablazatTomb [ $i ] [ 'allapot' ] == 0 ) {
             echo '<td class="text-danger text-center">' . 'Nincs aktiválva' . '</td>'; 
-        } else if ($tablazatTomb [ $i ] [ 'allapot' ] == '1') {
+        } else if ($tablazatTomb [ $i ] [ 'allapot' ] == 1) {
             echo '<td class="text-success text-center">' . 'Aktiválva' . '</td>'; 
         }
-        echo '<td class="text-center"><a href="admin.partnerek.elesites.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '" class="link">Partner szerkesztése</a></td>';
-            echo '</tr>'; }; 
+        echo '<td class="text-center">';
+        echo '<div class="dropdown">';
+        echo '<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
+        echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+        if ( $tablazatTomb [ $i ] [ 'allapot' ] == 0 ) {
+            echo '<li><a class="dropdown-item" href="admin.partnerek.elesites.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Partner élesítése</a></li>';
+        } else if ( $tablazatTomb [ $i ] [ 'allapot' ] == 1 ) {
+            echo '<li><a class="dropdown-item" href="admin.partnerek.szerkeszt.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '"">Partner szerkesztése</a></li>';
+            echo '<li><a class="dropdown-item text-danger" href="#">Partner törlése</a></li>';
+        }
+        echo '</ul></div></td></tr>';
     }
+}
     ?>
 
   </tbody>

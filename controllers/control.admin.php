@@ -23,5 +23,6 @@
                                                                     $_POST [ 'partnerEmail' ],
                                                                         $_POST [ 'partnerNev' ]
         );
+        $admin -> felhasznaloAktivalas ( $_POST [ 'partnerID' ] );
     }
 

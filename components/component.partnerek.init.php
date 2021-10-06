@@ -1,8 +1,8 @@
 <?php 
     $view = new View ();
-    $partnerAdat = $view -> partnerMezoKitoltes ( $_GET [ 'id' ] );
+    $felhasznaloAdat = $view -> felhasznaloMezoKitoltes ( $_GET [ 'id' ] );
 ?>
-        <form id="partnerElesites" class="border border-secondar rounded-3 shadow p-5 bg-light">
+        <form id="partnerInitForm" class="border border-secondar rounded-3 shadow p-5 bg-light">
             <fieldset>
 
                 <legend class="mt-3">Partner adatai</legend>
@@ -12,7 +12,7 @@
                     <div class="col-xl-6">
 
                         <label for="partnerNev" class="form-label mt-3">Szerződött Partner neve</label>
-                        <input type="text" name="partnerNev" id="partnerNev" class="form-control" value="<?php echo $partnerAdat [ 'nev' ]; ?>" required> 
+                        <input type="text" name="partnerNev" id="partnerNev" class="form-control" value="<?php echo $felhasznaloAdat [ 'nev' ]; ?>" required> 
 
                     </div>
 
@@ -30,7 +30,7 @@
                     <div class="col-xl-6">
 
                         <label for="partnerEmail" class="form-label mt-3">Email cím</label>
-                        <input type="text" name="partnerEmail" id="partnerEmail" class="form-control" value="<?php echo $partnerAdat [ 'email' ]; ?>" required>
+                        <input type="text" name="partnerEmail" id="partnerEmail" class="form-control" value="<?php echo $felhasznaloAdat [ 'email' ]; ?>" required>
 
                     </div>
                     
@@ -69,7 +69,7 @@
                     <div class="col-xl-4">
 
                         <label class="form-label mt-3">Szállítólevél limit Ft</label>
-                        <input type="text" name="szallitoLevelLimit" id="szallitoLevelLimit" class="form-control"  required>
+                        <input type="text" name="szallitoLevelLimit" id="szallitoLevelLimit" class="form-control" maxlength="6"  required>
 
                     </div>
 
