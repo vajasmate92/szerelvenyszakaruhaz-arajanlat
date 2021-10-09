@@ -4,6 +4,7 @@ session_start();
         include 'modells/modell.admin.class.php';
 
     $admin = new Admin ();
+    $view = new View ();
 
 ?>
 <!DOCTYPE html>

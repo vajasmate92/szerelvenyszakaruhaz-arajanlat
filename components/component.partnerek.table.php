@@ -1,4 +1,4 @@
- <?php $tablazatTomb = $admin -> fillTableWithRegisteredUsers (); ?>
+ <?php $tablazatTomb = $view -> fillTableWithRegisteredUsers (); ?>
 
 <div class="row">
     <h1 class="mt-3 text-center">Szerződött partnereink</h1>
@@ -32,8 +32,8 @@ for ( $i = 0 ; $i < count ( $tablazatTomb ) ; $i++ ) {
         if ( $tablazatTomb [ $i ] [ 'allapot' ] == 0 ) {
             echo '<li><a class="dropdown-item" href="admin.partnerek.elesites.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Partner élesítése</a></li>';
         } else if ( $tablazatTomb [ $i ] [ 'allapot' ] == 1 ) {
-            echo '<li><a class="dropdown-item" href="admin.partnerek.szerkeszt.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '"">Partner szerkesztése</a></li>';
-            echo '<li><a class="dropdown-item text-danger" href="#">Partner törlése</a></li>';
+            echo '<li><a class="dropdown-item" href="admin.partnerek.szerkeszt.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Partner szerkesztése</a></li>';
+            echo '<li><a class="dropdown-item text-danger" href=controllers/control.partnertorles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Partner törlése</a></li>';
         }
         echo '</ul></div></td></tr>';
     }
