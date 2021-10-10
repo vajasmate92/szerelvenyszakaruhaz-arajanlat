@@ -360,4 +360,48 @@ echo $gyartoIDPK [ 'pk_id' ];
 echo $allapot;
     }
 
+    public function termekcsoportGyartohozRendel (
+        $termekcsoport,
+        $allapot
+    ) {
+        filter_var ( $termekcsoport , FILTER_SANITIZE_STRING );
+        filter_var ( $allapot , FILTER_SANITIZE_NUMBER_INT );
+
+        $sql =
+        'UPDATE
+            `arajanlatok`.`termekcsoportok`
+        SET
+            `allapot`=:allapot
+        WHERE
+            `termekcsoport`=:termekcsoport';
+
+        $stmt = $this -> pdoConnect () -> prepare ( $sql );
+        $stmt -> bindParam ( ':allapot' , $allapot );
+        $stmt -> bindParam ( 'termekcsoport' , $termekcsoport );
+
+        $stmt -> execute ();
+    }
+
+    public function gyartoKapcsol (
+        $gyarto,
+        $allapot
+    ) {
+    filter_var ( $gyarto , FILTER_SANITIZE_STRING );
+    filter_var ( $allapot , FILTER_SANITIZE_NUMBER_INT );
+
+    $sql = 
+    'UPDATE
+        `arajanlatok`.`gyartok`
+    SET
+        `allapot`=:allapot
+    WHERE
+        `gyarto` LIKE :gyarto;';
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    $stmt -> bindParam ( ':allapot' , $allapot );
+    $stmt -> bindParam ( 'gyarto' , $gyarto );
+
+    $stmt -> execute ();
+    }
+
 }

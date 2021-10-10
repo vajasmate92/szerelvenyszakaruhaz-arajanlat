@@ -3,6 +3,7 @@ const partnerSzerkesztesGomb =  $ ( 'button#partnerSzerkesztesGomb' );
 const gyartoFeltoltesGomb =  $ ( 'button#gyartoFeltoltesGomb' );
 const gyartoModositGomb = $ ( 'button#gyartoModositGomb' );
 const termekcsoportFeltoltesGomb = $ ( 'button#termekcsoportFeltoltesGomb' );
+const gyartoTermekcsoportModositGomb = $ ( 'button#gyartoTermekcsoportModositGomb' );
 const gyartoFelfuggesztGomb = $ ( 'button#gyartoFelfuggesztGomb' );
 const partnerNev = $ ( 'input#partnerNev' );
 const partnerCegNev = $ ( 'input#partnerCegNev' );

@@ -1,6 +1,6 @@
 <?php
-    $tablazatTombTermekcsoportok = $view -> tablaFeltolteseTermekcsoportokkal (); 
-    $tablazatTombGyartok = $view -> tablaFeltolteseGyartokkal (); 
+    $dataListGyarto = $view -> gyartokLista (); 
+    $tablazatTombGyartokEsTermekcsoportok = $view -> gyartoLekerdezeseTermekcsoportAlapjan ();
 ?>
 <div class="row mt-3">
     <p class="text-center h1">Termékcsoport feltöltése</p>
@@ -19,8 +19,8 @@
                 <input list="gyartokDatalist" name="gyarto" class="form-control" required>
                     <datalist id="gyartokDatalist">
                         <?php
-                        for ( $i = 0 ; $i < count ( $tablazatTombGyartok ); $i++ ) {
-                           echo '<option value="' . $tablazatTombGyartok [ $i ] [ 'gyarto' ] . '">';
+                        for ( $i = 0 ; $i < count ( $dataListGyarto ); $i++ ) {
+                           echo '<option value="' . $dataListGyarto [ $i ] [ 'gyarto' ] . '">';
                         }
                         ?>
                     </datalist>
@@ -47,29 +47,46 @@
         </tr>
     </thead>
     <tbody>
-    <!-- <?php
-        echo '<tr>';
-        for ( $i = 0 ; $i < count ( $tablazatTomb ) ; $i++ ) {
-            echo '<td class="text-center position-relative">' . $tablazatTomb [ $i ] [ 'termekcsoport' ] . '</i></span></td>';
-            if ( $tablazatTomb [ $i ] [ 'allapot' ] == 0 ) {
-                echo '<td class="text-center">Nincs aktiválva</td>';
-            } else if ( $tablazatTomb [ $i ] [ 'allapot' ] == 1 ) {
-                echo '<td class="text-center">Aktiválva</td>';
+    <?php
+        for ( $i = 0 ; $i < count ( $tablazatTombGyartokEsTermekcsoportok ) ; $i++ ) {
+            echo '<tr>';
+            if( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 1 ) {
+                echo '<td class="text-center position-relative">' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'termekcsoport' ] . '</i></span></td>';
             }
-            echo '<td class="text-center">Még ki kell tölteni</td>';
-            echo '<td class="text-center">';
-            echo '<div class="dropdown">';
-            echo '<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
-            echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
-            if ( $tablazatTomb [ $i ] [ 'allapot' ] == 0 ) {
-                echo '<li><a class="dropdown-item" href="admin.gyarto.elesit.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó élesítése</a></li>';
-            } else if ( $tablazatTomb [ $i ] [ 'allapot' ] == 1 ) {
-                echo '<li><a class="dropdown-item gyartoSzerkesztes" href="admin.gyarto.szerkesztes.php?gyarto=' . $tablazatTomb [ $i ] [ 'gyarto' ] . '&id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó szerkesztése</a></li>';
-                echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó Törlése</a></li>';
+            else if ( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 0 ) {
+                    echo '<td class="text-center position-relative table-danger"><del><em>' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'termekcsoport' ] . '</em></del></i></span></td>';
             }
-            echo '</ul></div></td></tr>';
-        }
-    ?> -->
+            if( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 1 ) {
+                echo '<td class="text-center position-relative">' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'gyarto' ] . '</i></span></td>';
+            }
+            else if ( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 0 ) {
+                    echo '<td class="text-center position-relative table-danger"><em>' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'gyarto' ] . '</em></i></span></td>';
+            }
+            if( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 1 ) {
+                echo '<td class="text-center">Még ki kell tölteni</td>';
+            }
+            else if ( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 0 ) {
+                    echo '<td class="text-center position-relative table-danger"><em>Még ki kell tölteni</em></i></span></td>';
+            }
+            if( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 1 ) {
+                echo '<td class="text-center">';
+                echo '<div class="dropdown">';
+                echo '<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
+                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                echo '<li><a class="dropdown-item text-danger" href="admin.termekcsoport.torles.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '">Termékcsoport törlése</a></li>';
+                echo '</ul></div></td></tr>';
+            }
+            else if ( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 0 ) {
+                echo '<td class="text-center table-danger">';
+                echo '<div class="dropdown">';
+                echo '<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
+                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                echo '<li><a class="dropdown-item text-danger" href="admin.termekcsoport.torles.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '">Termékcsoport törlése</a></li>';
+                echo '</ul></div></td></tr>';
+            }
+
+            }
+    ?>
     </div>
     </tbody>
 </table>

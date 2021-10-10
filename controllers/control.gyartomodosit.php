@@ -1,6 +1,4 @@
 <?php
-session_start ();
-
 include '../modells/modell.pdoconn.class.php';
     include '../modells/modell.admin.class.php';  
 

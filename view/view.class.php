@@ -72,7 +72,7 @@ class View extends PDOConn {
         return $fetchedRowData;
     }
     
-    public function tablaFeltolteseGyartokkal () {
+    public function gyartokLista () {
         $sql = 'SELECT
             `pk_id`,
             `gyarto`,
@@ -87,18 +87,24 @@ class View extends PDOConn {
         return $fetchedRowData = $stmt -> fetchAll ();
     }
 
-    public function tablaFeltolteseTermekcsoportokkal () {
-        $sql = 'SELECT
-            `pk_id`,
-            `termekcsoport`,
-            `FK_gyarto_id`
-        FROM
-            `arajanlatok`.`termekcsoportok`;';
-        
-        $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    public function gyartoLekerdezeseTermekcsoportAlapjan () {
 
-        $stmt -> execute ();
+        $sql =
+        'SELECT
+        `termekcsoportok`.`termekcsoport`,
+        `termekcsoportok`.`FK_gyarto_id`,
+        `termekcsoportok`.`allapot`,
+        `gyartok`.`PK_id`,
+        `gyartok`.`gyarto`
+    FROM
+        `gyartok`
+    INNER JOIN
+        `termekcsoportok`
+    ON
+        `termekcsoportok`.`FK_gyarto_id` = `gyartok`.`PK_id`;';
 
-        return $fetchedRowData = $stmt -> fetchAll ();
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    $stmt -> execute ();
+    return $fetchedRowData = $stmt -> fetchAll ();
     }
 }

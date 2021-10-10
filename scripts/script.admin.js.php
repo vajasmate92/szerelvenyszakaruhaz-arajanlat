@@ -1,7 +1,6 @@
 <script>
     <?php include 'script.const.adminelemek.js.php'; ?>
 
-
     jovahagyasGomb . click ( () => {
        var elkuldottAdatok = $ ( 'form#partnerInitForm' ) . serialize ();
             // console . log ( elkuldottAdatok );
@@ -28,18 +27,21 @@
 
     gyartoModositGomb . click ( () => {
         var elkuldottAdatok = $ ( "form#gyartoEditForm" ) . serialize ();
-        // console . log ( elkuldottAdatok );
+        console . log ( elkuldottAdatok );
 
         $ . post ( 'controllers/control.gyartomodosit.php' , elkuldottAdatok , ( data ) => { console . log ( data ); window . history . back(); } ); 
-
     } )
 
     termekcsoportFeltoltesGomb . click ( () => {
         var elkuldottAdatok = $ ( "form#termekcsoportUploadForm" ) . serialize ();
         console . log ( elkuldottAdatok );
 
-        $ . post ( 'controllers/control.termekcsoportfeltoltes.php' , elkuldottAdatok , ( data ) => { console . log ( data ); location . reload (); } ); 
+        $ . post ( 'controllers/control.termekcsoportfeltoltes.php' , elkuldottAdatok , ( data ) => { console . log ( data ); location . reload ();  } ); 
+    } )
 
+    gyartoTermekcsoportModositGomb . click ( () => {
+        var elkuldottAdatok = $ ( "form#gyartoTermekcsoportModositForm" ) . serialize ();
+        console . log ( elkuldottAdatok );
     } )
 
 </script>
