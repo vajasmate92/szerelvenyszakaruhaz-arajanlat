@@ -73,7 +73,7 @@
                     <input type="hidden" name="partnerID" id="partnerID" class="form-control" value="<?php echo $_GET [ 'id' ] ?>" required>
                 </div>
                 <div class="col-xl-6">
-                    <input type="hidden" name="adminID" id="adminID" class="form-control" value="<?php echo $_SESSION [ 'id' ] ?>" required>
+                    <input type="hidden" name="adminID" id="adminID" class="form-control" value="<?php echo $_SESSION [ 'id' ] [ 'pk_id' ] ?>" required>
                 </div>
             </div>
 

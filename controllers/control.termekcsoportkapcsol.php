@@ -4,7 +4,7 @@ include '../modells/modell.pdoconn.class.php';
 
 $admin = new Admin ();
 
-$gyartoID = is_numeric ( $_GET [ 'id' ] ); 
+$termekcsoportID = is_numeric ( $_GET [ 'id' ] ); 
 $allapot = is_numeric ( $_GET [ 'allapot' ] ); 
 
 if ( 
@@ -12,7 +12,7 @@ if (
     &&
     $allapot
     ) {
-        $admin -> gyartoKapcsol (
+        $admin -> termekcsoportKapcsol (
         $_GET [ 'id' ],
         $_GET [ 'allapot' ]
         );

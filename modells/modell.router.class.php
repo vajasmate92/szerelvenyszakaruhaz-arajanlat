@@ -22,11 +22,18 @@ class AdminSiteRouter {
         else if ( $url == 'termekek' ) {
         return 'components/component.termekek.php';
         } 
+        else if ( $url == 'arajanlatkeszites' ) {
+        return 'components/component.arajanlatkeszito.php';
+        } 
+        else if ( $url == 'adataim' ) {
+        return 'components/component.partneradat.php';
+        } 
         else if ( $url == 'kijelentkezes') {
         header ('Location: controllers/control.logout.php');
         }
         else  {
-        return 'components/component.admin.php';
+        return '..
+        /components/component.main.php';
         }
     }
 

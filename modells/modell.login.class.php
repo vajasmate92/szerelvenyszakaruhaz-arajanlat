@@ -83,17 +83,22 @@ class Bejelentkezes extends PDOConn {
 
     }
 
-    public function sessionIDLekerese ( $email ) {
+    public function felhasznaloAdatokLekerdezes ( $email ) {
 
-        $this -> emailCimHigienizalas ( $email ) ;
+        $this -> emailCimHigienizalas ( $email );
 
-        $sql = "SELECT `PK_id` FROM `arajanlatok`.`felhasznalok` WHERE `email` LIKE :email;" ;
+        $sql = 'SELECT
+            `PK_id`,
+            `jogosultsag`
+        FROM
+            `arajanlatok`.`felhasznalok`
+        WHERE
+            `email` LIKE :email;' ;
                     $stmt = $this -> pdoConnect () -> prepare ( $sql ) ;
                         $stmt -> bindParam ( ":email" , $email ) ;
                                 $stmt -> execute () ;
                                     $fetchedID = $stmt -> fetch () ;
-                 
-        // echo $fetchedID [ 'pk_id' ] ;
-        return intval ( $fetchedID [ 'pk_id' ] ) ;
+        echo $fetchedID [ 'pk_id' ];
+        return $fetchedID;
     }
 }

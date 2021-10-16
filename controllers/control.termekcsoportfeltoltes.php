@@ -14,6 +14,6 @@
          $admin -> termekcsoportFeltoltes ( 
             $_POST [ "termekcsoport" ],
             $_POST [ "gyarto" ],
-            $_SESSION  [ "id" ]
+            $_SESSION  [ "id" ] [ 'pk_id' ]
           );
      }

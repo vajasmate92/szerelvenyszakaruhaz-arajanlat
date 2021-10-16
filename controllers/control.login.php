@@ -17,9 +17,8 @@
 
             if ( $felhasznaloAllapotEllenorzes ) {
 
-                $sessionID = $login -> sessionIDLekerese ( $_POST [ "email" ] ) ;
+                $sessionID = $login -> felhasznaloAdatokLekerdezes ( $_POST [ "email" ] ) ;
                 $_SESSION [ 'id' ] = $sessionID;
-                echo 'OK';
             }
         }
     }

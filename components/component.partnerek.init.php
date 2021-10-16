@@ -81,7 +81,7 @@
 
                     <div class="col-xl-2">
 
-                        <input type="hidden" name="adminID" id="adminID" class="form-control" value="<?php echo $_SESSION [ 'id' ] ?>" required>
+                        <input type="hidden" name="adminID" id="adminID" class="form-control" value="<?php echo $_SESSION [ 'id' ] [ 'pk_id' ] ?>" required>
 
                     </div>
 

@@ -70,11 +70,11 @@
                                     hibaUzenetAblak . show ();
                                         hiba = true;
 
-                    } if ( data == 'OK' ) {
+                    } 
                         
                         window . location . assign ( 'administration.php' );
 
-                            };
+
                         }
                     )
                 }

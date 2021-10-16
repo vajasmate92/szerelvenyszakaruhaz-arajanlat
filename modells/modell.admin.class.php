@@ -9,7 +9,7 @@ class Admin extends PDOConn {
         $stmt -> execute ();
         $fetchedID = $stmt -> fetch ();
                         
-        return $fetchedID ['pk_id'];
+        return $fetchedID [ 'pk_id' ];
     }
 
     public function getAdministratorName ( $id ) {
@@ -18,7 +18,7 @@ class Admin extends PDOConn {
         $stmt -> bindParam ( ":id" , $idCheck );
         $idCheck = $id;
         $stmt -> execute ();
-        $fetchedName = $stmt -> fetch ( PDO::FETCH_ASSOC );
+        $fetchedName = $stmt -> fetch ();
                                         
         return $fetchedName [ 'nev' ];
     }
@@ -383,11 +383,11 @@ echo $allapot;
     }
 
     public function gyartoKapcsol (
-        $gyarto,
+        $gyartoID,
         $allapot
     ) {
-    filter_var ( $gyarto , FILTER_SANITIZE_STRING );
     filter_var ( $allapot , FILTER_SANITIZE_NUMBER_INT );
+    filter_var ( $gyartoID , FILTER_SANITIZE_NUMBER_INT );
 
     $sql = 
     'UPDATE
@@ -395,13 +395,187 @@ echo $allapot;
     SET
         `allapot`=:allapot
     WHERE
-        `gyarto` LIKE :gyarto;';
+        `PK_id` LIKE :gyartoID;';
+    
+        $stmt = $this -> pdoConnect () -> prepare ( $sql );
+        $stmt -> bindParam ( ':allapot' , $allapot );
+        $stmt -> bindParam ( ':gyartoID' , $gyartoID );
+    
+        $stmt -> execute ();
+
+
+    $sql = 
+    'UPDATE
+        `arajanlatok`.`termekcsoportok`
+    SET
+        `allapot`=:allapot
+    WHERE
+        `FK_gyarto_id` LIKE :gyartoID;';
 
     $stmt = $this -> pdoConnect () -> prepare ( $sql );
     $stmt -> bindParam ( ':allapot' , $allapot );
-    $stmt -> bindParam ( 'gyarto' , $gyarto );
+    $stmt -> bindParam ( ':gyartoID' , $gyartoID );
 
     $stmt -> execute ();
-    }
+}
+public function termekcsoportKapcsol (
+    $termekcsoportID,
+    $allapot
+) {
+    filter_var ( $termekcsoportID , FILTER_SANITIZE_NUMBER_INT );
+    filter_var ( $allapot , FILTER_SANITIZE_NUMBER_INT );
+    
+    $sql =
+    'UPDATE
+        `arajanlatok`.`termekcsoportok`
+    SET
+        `allapot`=:allapot
+    WHERE
+        `PK_id`=:termekcsoportID;';
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    $stmt -> bindParam ( ':allapot' , $allapot );
+    $stmt -> bindParam ( ':termekcsoportID' , $termekcsoportID );
+
+    $stmt -> execute ();
+}
+
+public function termekKategoriaFeltoltes (
+    $termekkategoria,
+    $adminID
+) {
+
+    filter_var ( $termekkategoria , FILTER_SANITIZE_STRING );
+    filter_var ( $adminID , FILTER_SANITIZE_NUMBER_INT );
+
+    $allapot = 1;
+
+    $adminIDPK = $this -> getAdministratorID ( $adminID );
+    
+    $sql = 
+    "INSERT INTO `arajanlatok`.`termekkategoriak`
+        (
+        `termekkategoria`,
+        `FK_letrehozo_admin_id`,
+        `allapot`
+        )
+    VALUES
+        (
+        :termekkategoria,
+        :adminID,
+        :allapot
+        )";
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+
+    $stmt -> bindParam ( ':termekkategoria' , $termekkategoria );
+    $stmt -> bindParam ( ':adminID' , $adminIDPK );
+    $stmt -> bindParam ( ':allapot' , $allapot );
+
+    $stmt -> execute ();
+
+}
+
+public function termekFeltoltes (
+    $gyarto,
+    $termekcsoport,
+    $termekkategoria,
+    $termek,
+    $cikkszam,
+    $ar,
+    $adminID
+) {
+
+    filter_var ( $gyarto , FILTER_SANITIZE_STRING );
+    filter_var ( $termekcsoport , FILTER_SANITIZE_STRING );
+    filter_var ( $termekkategoria , FILTER_SANITIZE_STRING );
+    filter_var ( $termek , FILTER_SANITIZE_STRING );
+    filter_var ( $cikkszam , FILTER_SANITIZE_STRING );
+    filter_var ( $ar , FILTER_SANITIZE_NUMBER_INT );
+    filter_var ( $adminID , FILTER_SANITIZE_NUMBER_INT );
+
+    $allapot = 1;
+
+    $adminIDPK = $this -> getAdministratorID ( $adminID );
+
+    $sql =
+    'SELECT
+        `PK_id`
+    FROM
+        `arajanlatok`.`gyartok`
+    WHERE
+        `gyarto`=:gyarto;';
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    $stmt -> bindParam ( ':gyarto' , $gyarto );
+
+    $stmt -> execute ();
+    $gyartoID = $stmt -> fetch ();
+
+    $sql =
+    'SELECT
+        `PK_id`
+    FROM
+        `arajanlatok`.`termekcsoportok`
+    WHERE
+        `termekcsoport`=:termekcsoport;';
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    $stmt -> bindParam ( ':termekcsoport' , $termekcsoport );
+
+    $stmt -> execute ();
+    $termekcsoportID = $stmt -> fetch ();
+
+    $sql =
+    'SELECT
+        `PK_id`
+    FROM
+        `arajanlatok`.`termekkategoriak`
+    WHERE
+        `termekkategoria`=:termekkategoria;';
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    $stmt -> bindParam ( ':termekkategoria' , $termekkategoria );
+
+    $stmt -> execute ();
+    $termekkategoriaID = $stmt -> fetch ();
+
+    $sql =
+    'INSERT INTO
+        `arajanlatok`.`termekek`
+    (
+        `FK_letrehozo_admin_id`,
+        `FK_gyarto_id`,
+        `FK_termekcsoport_id`,
+        `FK_termekkategoria_id`,
+        `termeknev`,
+        `cikkszam`,
+        `ar`,
+        `allapot`
+    )
+    VALUES
+    (
+        :adminIDPK,
+        :gyartoID,
+        :termekcsoportID,
+        :termekkategoriaID,
+        :termek,
+        :cikkszam,
+        :ar,
+        :allapot
+    );';
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+    $stmt -> bindParam ( ':adminIDPK' , $adminIDPK );
+    $stmt -> bindParam ( ':gyartoID' , $gyartoID [ 'pk_id' ] );
+    $stmt -> bindParam ( ':termekcsoportID' , $termekcsoportID [ 'pk_id' ] );
+    $stmt -> bindParam ( ':termekkategoriaID' , $termekkategoriaID [ 'pk_id' ] );
+    $stmt -> bindParam ( ':termek' , $termek );
+    $stmt -> bindParam ( ':cikkszam' , $cikkszam );
+    $stmt -> bindParam ( ':ar' , $ar );
+    $stmt -> bindParam ( ':allapot' , $allapot );
+
+    $stmt -> execute ();
+}
 
 }

@@ -39,9 +39,17 @@
         $ . post ( 'controllers/control.termekcsoportfeltoltes.php' , elkuldottAdatok , ( data ) => { console . log ( data ); location . reload ();  } ); 
     } )
 
-    gyartoTermekcsoportModositGomb . click ( () => {
-        var elkuldottAdatok = $ ( "form#gyartoTermekcsoportModositForm" ) . serialize ();
+    termekkategoriaFeltoltesGomb . click ( () => {
+        var elkuldottAdatok = $ ( "form#termekkategoriaUploadForm" ) . serialize ();
         console . log ( elkuldottAdatok );
+
+        $ . post ( 'controllers/control.termekkategoriafeltoltes.php' , elkuldottAdatok , ( data ) => { console . log ( data ); location . reload (); } ); 
     } )
 
+    termekFeltoltesGomb . click ( () => {
+        var elkuldottAdatok = $ ( "form#termekUploadForm" ) . serialize ();
+        console . log ( elkuldottAdatok );
+        
+        $ . post ( 'controllers/control.termekfeltoltes.php' , elkuldottAdatok , ( data ) => { console . log ( data ); location . reload (); } ); 
+    } )
 </script>

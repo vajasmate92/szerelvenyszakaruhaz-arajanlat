@@ -73,6 +73,7 @@ CREATE TABLE `arajanlatok`.`termekek`(
     `FK_termekcsoport_id` INT(8) NOT NULL,
     `FK_termekkategoria_id` INT(8) NOT NULL,
     `termeknev` VARCHAR(255) NOT NULL,
+    `cikkszam` VARCHAR(255) NOT NULL,
     `ar` INT(10) NOT NULL,
     `allapot` INT(1) NOT NULL,
     PRIMARY KEY (`PK_id`),

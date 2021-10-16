@@ -107,4 +107,109 @@ class View extends PDOConn {
     $stmt -> execute ();
     return $fetchedRowData = $stmt -> fetchAll ();
     }
+
+    public function termekkategoriak () {
+        $sql = 'SELECT
+        `pk_id`,
+        `termekkategoria`,
+        `allapot`
+    FROM
+        `arajanlatok`.`termekkategoriak`;';
+    
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+
+    $stmt -> execute ();
+
+    return $fetchedRowData = $stmt -> fetchAll ();
+    }
+
+    public function termekcsoportLista () {
+        $sql = 'SELECT
+        `pk_id`,
+        `termekcsoport`,
+        `allapot`
+    FROM
+        `arajanlatok`.`termekcsoportok`;';
+    
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+
+    $stmt -> execute ();
+
+    return $fetchedRowData = $stmt -> fetchAll ();
+    }
+
+    public function termekekLista () {
+    $sql = 
+        'SELECT
+            `gyartok`.`gyarto`,
+            `termekcsoportok`.`termekcsoport`,
+            `termekkategoriak`.`termekkategoria`,
+            `termekek`.`PK_id`,
+            `termekek`.`termeknev`,
+            `termekek`.`cikkszam`,
+            `termekek`.`ar`,
+            `termekek`.`allapot`
+        FROM
+        (((`termekek`
+        INNER JOIN
+            `gyartok`
+        ON
+            `gyartok`.`PK_id` = `termekek`.`FK_gyarto_id`)
+        INNER JOIN
+            `termekcsoportok`
+        ON
+            `termekcsoportok`.`PK_id` = `termekek`.`FK_termekcsoport_id`)
+        INNER JOIN
+            `termekkategoriak`
+        ON
+            `termekkategoriak`.`PK_id` = `termekek`.`FK_termekkategoria_id`);';
+
+    $stmt = $this -> pdoConnect () -> prepare ( $sql );
+
+    $stmt -> execute ();
+
+    return $fetchedRowData = $stmt -> fetchAll ();
+
+    }
+
+    public function kereses (
+        $keresoSzo
+    ) {
+        filter_var ( $keresoSzo , FILTER_SANITIZE_STRING );
+
+        $sql =
+        "SELECT
+            `gyartok`.`gyarto`,
+            `termekcsoportok`.`termekcsoport`,
+            `termekkategoriak`.`termekkategoria`,
+            `termekek`.`PK_id`,
+            `termekek`.`termeknev`,
+            `termekek`.`cikkszam`,
+            `termekek`.`ar`,
+            `termekek`.`allapot`
+        FROM
+        (((`termekek`
+        INNER JOIN
+            `gyartok`
+        ON
+            `gyartok`.`PK_id` = `termekek`.`FK_gyarto_id`)
+        INNER JOIN
+            `termekcsoportok`
+        ON
+            `termekcsoportok`.`PK_id` = `termekek`.`FK_termekcsoport_id`)
+        INNER JOIN
+            `termekkategoriak`
+        ON
+            `termekkategoriak`.`PK_id` = `termekek`.`FK_termekkategoria_id`)
+        WHERE
+        CONCAT (`gyarto`, ' ', `termekcsoport`, ' ', `termekkategoria`, ' ', `termeknev`, ' ', `cikkszam`)
+        LIKE CONCAT ('%', :keresoSzo, '%');";
+        
+        $stmt = $this -> pdoConnect () -> prepare ( $sql );
+        $stmt -> bindParam ( ':keresoSzo', $keresoSzo );
+        $stmt -> execute ();
+    
+        return $fetchedRowData = $stmt -> fetchAll ();
+    }
+
 }

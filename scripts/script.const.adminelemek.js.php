@@ -1,6 +1,8 @@
 const jovahagyasGomb =  $ ( 'button#jovahagyasGomb' );
 const partnerSzerkesztesGomb =  $ ( 'button#partnerSzerkesztesGomb' );
 const gyartoFeltoltesGomb =  $ ( 'button#gyartoFeltoltesGomb' );
+const termekkategoriaFeltoltesGomb =  $ ( 'button#termekkategoriaFeltoltesGomb' );
+const termekFeltoltesGomb =  $ ( 'button#termekFeltoltesGomb' );
 const gyartoModositGomb = $ ( 'button#gyartoModositGomb' );
 const termekcsoportFeltoltesGomb = $ ( 'button#termekcsoportFeltoltesGomb' );
 const gyartoTermekcsoportModositGomb = $ ( 'button#gyartoTermekcsoportModositGomb' );

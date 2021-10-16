@@ -54,7 +54,7 @@
                 echo '<td class="text-center position-relative">' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'termekcsoport' ] . '</i></span></td>';
             }
             else if ( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 0 ) {
-                    echo '<td class="text-center position-relative table-danger"><del><em>' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'termekcsoport' ] . '</em></del></i></span></td>';
+                    echo '<td class="text-center position-relative table-danger"><em>' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'termekcsoport' ] . '</em></i></span></td>';
             }
             if( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 1 ) {
                 echo '<td class="text-center position-relative">' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'gyarto' ] . '</i></span></td>';
@@ -71,17 +71,19 @@
             if( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 1 ) {
                 echo '<td class="text-center">';
                 echo '<div class="dropdown">';
-                echo '<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
-                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
-                echo '<li><a class="dropdown-item text-danger" href="admin.termekcsoport.torles.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '">Termékcsoport törlése</a></li>';
+                echo '<a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
+                echo '<ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">';
+                echo '<li><a class="dropdown-item text-warning" href="controllers/control.termekcsoportkapcsol.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '&allapot=0">Termékcsoport kikapcsolása</a></li>';
+                echo '<li><a class="dropdown-item text-danger" href="controllers/control.termekcsoporttorol.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '">Termékcsoport törlése</a></li>';
                 echo '</ul></div></td></tr>';
             }
             else if ( $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'allapot' ] == 0 ) {
                 echo '<td class="text-center table-danger">';
                 echo '<div class="dropdown">';
-                echo '<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
-                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
-                echo '<li><a class="dropdown-item text-danger" href="admin.termekcsoport.torles.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '">Termékcsoport törlése</a></li>';
+                echo '<a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
+                echo '<ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">';
+                echo '<li><a class="dropdown-item text-success" href="controllers/control.termekcsoportkapcsol.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '&allapot=1">Termékcsoport bekapcsolása</a></li>';
+                echo '<li><a class="dropdown-item text-danger" href="controllers/control.termekcsoporttorol.php?id=' . $tablazatTombGyartokEsTermekcsoportok [ $i ] [ 'pk_id' ] . '">Termékcsoport törlése</a></li>';
                 echo '</ul></div></td></tr>';
             }
 

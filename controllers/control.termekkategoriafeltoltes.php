@@ -6,9 +6,9 @@ include '../modells/modell.pdoconn.class.php';
 
 $admin = new Admin ();
 
-if ( isset ( $_POST [ 'gyarto' ] ) && !empty ( $_POST [ 'gyarto' ] ) ) {
-    $admin -> gyartoFeltoltes (
-        $_POST [ 'gyarto' ],
+if ( isset ( $_POST [ 'termekkategoria' ] ) && !empty ( $_POST [ 'termekkategoria' ] ) ) {
+    $admin -> termekKategoriaFeltoltes (
+        $_POST [ 'termekkategoria' ],
         $_SESSION [ 'id' ] [ 'pk_id' ]
     );
 }
