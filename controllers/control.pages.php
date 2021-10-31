@@ -1,6 +1,6 @@
 <?php 
                     if ( $_GET [ 'adminPage' == 'arajanlatok'] ) {
-                        include 'components/component.arajanlatok.php';
+                        include 'components/component.arajanlatok.admin.php';
                     }
                     if ( $_GET [ 'adminPage' == 'partnerek'] ) {
                         include 'components/component.partnerek.table.php';

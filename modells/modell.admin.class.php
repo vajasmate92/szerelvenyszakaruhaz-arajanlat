@@ -61,7 +61,6 @@ class Admin extends PDOConn {
 
         $telefonszamDBFormatum = 36 . $partnerTelefonszamSzolgaltato . $partnerTelefonszam;
         $adoszamDBFormatum = $adoszamTorzsszam . $adoszamAFAKod . $adoszamTeruletiKod;
-        $adminIDBFormatum = $this -> getAdministratorID ( $adminID );
 
 
        $sql = "INSERT INTO `arajanlatok`.`partnerek`
@@ -89,7 +88,7 @@ class Admin extends PDOConn {
         :adminID
        )";
 
-        $stmt = $this -> pdoConnect () -> prepare ( $sql );
+        $stmt = $this -> pdoConnect() -> prepare($sql);
 
         $stmt -> bindParam ( ':partnerCegNev' , $partnerCegNev );
         $stmt -> bindParam ( ':telefonszamDBFormatum' , $telefonszamDBFormatum );
@@ -100,7 +99,7 @@ class Admin extends PDOConn {
         $stmt -> bindParam ( ':szallitoLevelLimit' , $szallitoLevelLimit );
         $stmt -> bindParam ( ':partnerKedvezmeny' , $partnerKedvezmeny );
         $stmt -> bindParam ( ':partnerID' , $partnerID );
-        $stmt -> bindParam ( ':adminID' , $adminIDBFormatum );
+        $stmt -> bindParam ( ':adminID' , $adminID );
 
         $stmt -> execute ();
 
@@ -253,18 +252,18 @@ class Admin extends PDOConn {
 
     }
 
-    public function partnerTolrese ( $id ) {
+    public function partnerTorlese ( $id ) {
 
         filter_var ( $id , FILTER_SANITIZE_NUMBER_INT );
 
         $sql = 
         'DELETE FROM
-            `arajanlatok`.`partnerek`
+        `arajanlatok`.`partnerek`
         WHERE
-            `FK_felhasznalo_id` = :id;';
+        `FK_felhasznalo_id` = :id;';
         
         $stmt = $this -> pdoConnect () -> prepare ( $sql );
-        $stmt -> bindParam ( 'id' , $id );
+        $stmt -> bindParam ( ':id' , $id );
         $stmt -> execute ();
 
         $sql = 
@@ -274,7 +273,7 @@ class Admin extends PDOConn {
             `PK_id` = :id;';
 
         $stmt = $this -> pdoConnect () -> prepare ( $sql );
-        $stmt -> bindParam ( 'id' , $id );
+        $stmt -> bindParam ( ':id' , $id );
         $stmt -> execute ();
     }
 

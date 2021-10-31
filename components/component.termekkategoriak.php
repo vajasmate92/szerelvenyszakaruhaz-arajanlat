@@ -46,12 +46,12 @@
                 echo '<a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
                 echo '<ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">';
                 if ( $tablazatTomb [ $i ] [ 'allapot' ] == 0 ) {
-                echo '<li><a class="dropdown-item text-success" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=1">Gyártó élesítése</a></li>';
-                echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó törlése</a></li>';
+                echo '<li><a class="dropdown-item text-success" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=1">Termékkategória élesítése</a></li>';
+                echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Termékkategória törlése</a></li>';
             } else if ( $tablazatTomb [ $i ] [ 'allapot' ] == 1 ) {
-                echo '<li><a class="dropdown-item text-primary" href="admin.gyarto.szerkesztes.php?gyarto=' . $tablazatTomb [ $i ] [ 'termekkategoria' ] . '&id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó szerkesztése</a></li>';
-                echo '<li><a class="dropdown-item text-warning" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=0">Gyártó kikapcsolása</a></li>';
-                echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó törlése</a></li>';
+                echo '<li><a class="dropdown-item text-primary" href="admin.gyarto.szerkesztes.php?gyarto=' . $tablazatTomb [ $i ] [ 'termekkategoria' ] . '&id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Termékkategória szerkesztése</a></li>';
+                echo '<li><a class="dropdown-item text-warning" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=0">Termékkategória kikapcsolása</a></li>';
+                echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Termékkategória törlése</a></li>';
             }
             echo '</ul></div></td></tr>';
         } else if ( $tablazatTomb [ $i ] [ 'allapot' ] == 1 ) {
@@ -60,12 +60,12 @@
             echo '<a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
             echo '<ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">';
             if ( $tablazatTomb [ $i ] [ 'allapot' ] == 0 ) {
-            echo '<li><a class="dropdown-item text-success" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=1">Gyártó élesítése</a></li>';
-            echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó törlése</a></li>';
+            echo '<li><a class="dropdown-item text-success" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=1">Termékkategória élesítése</a></li>';
+            echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Termékkategória törlése</a></li>';
         } else if ( $tablazatTomb [ $i ] [ 'allapot' ] == 1 ) {
-            echo '<li><a class="dropdown-item text-primary" href="admin.gyarto.szerkesztes.php?gyarto=' . $tablazatTomb [ $i ] [ 'termekkategoria' ] . '&id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó szerkesztése</a></li>';
-            echo '<li><a class="dropdown-item text-warning" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=0">Gyártó kikapcsolása</a></li>';
-            echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Gyártó törlése</a></li>';
+            echo '<li><a class="dropdown-item text-primary" href="admin.gyarto.szerkesztes.php?gyarto=' . $tablazatTomb [ $i ] [ 'termekkategoria' ] . '&id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Termékkategória szerkesztése</a></li>';
+            echo '<li><a class="dropdown-item text-warning" href="controllers/control.gyartokapcsol.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '&allapot=0">Termékkategória kikapcsolása</a></li>';
+            echo '<li><a class="dropdown-item text-danger" href="admin.gyarto.torles.php?id=' . $tablazatTomb [ $i ] [ 'pk_id' ] . '">Termékkategória törlése</a></li>';
         }
         echo '</ul></div></td></tr>';
         }

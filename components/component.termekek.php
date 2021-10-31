@@ -143,6 +143,9 @@ $tablazatTombGyartokEsTermekcsoportok = $view->gyartoLekerdezeseTermekcsoportAla
             echo '<div class="dropdown">';
             echo '<a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Műveletek</a>';
             echo '<ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">';
+            echo '<li><a class="dropdown-item text-primary" href="controllers/control.termekcsoportkapcsol.php?id=' .
+                $termekekTomb[$i]['pk_id'] .
+                '&allapot=0">Termék szerkesztése</a></li>';
             echo '<li><a class="dropdown-item text-warning" href="controllers/control.termekcsoportkapcsol.php?id=' .
                 $termekekTomb[$i]['pk_id'] .
                 '&allapot=0">Termék kikapcsolása</a></li>';

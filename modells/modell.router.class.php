@@ -5,7 +5,7 @@ class AdminSiteRouter {
     public function router ( $url ) {
 
         if ( $url == 'arajanlatok' ) {
-        return 'components/component.arajanlatok.php';
+        return 'components/component.arajanlatok.admin.php';
         }
         else if ( $url == 'partnerek' ) {
         return 'components/component.partnerek.table.php';
@@ -32,8 +32,7 @@ class AdminSiteRouter {
         header ('Location: controllers/control.logout.php');
         }
         else  {
-        return '..
-        /components/component.main.php';
+        return 'components/component.main.php';
         }
     }
 

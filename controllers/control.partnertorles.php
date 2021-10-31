@@ -5,5 +5,5 @@ include '../modells/modell.pdoconn.class.php';
 
 $admin = new Admin ();
 
-    $admin -> partnerTolrese ( $_GET [ 'id' ] );
+    $admin -> partnerTorlese ( $_GET [ 'id' ] );
     header ( 'Location: ../administration.php' );

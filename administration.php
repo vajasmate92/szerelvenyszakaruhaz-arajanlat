@@ -2,12 +2,14 @@
 session_start();
     include 'modells/modell.pdoconn.class.php';
     include 'modells/modell.admin.class.php';
+    include 'modells/modell.partner.class.php';
     include 'modells/modell.router.class.php';
     include 'view/view.class.php';
 
     $admin = new Admin ();
     $view = new View ();
     $router = new AdminSiteRouter ();
+    $partner = new Partner ();
 
 
 
@@ -48,7 +50,8 @@ session_start();
 
     <?php include 'links/link.bootstrap.js.php';
     include 'links/link.jquery.script.php';
-    include 'scripts/script.admin.js.php' 
+    include 'scripts/script.admin.js.php' ;
+    include 'scripts/script.arajanlatletrehozas.php' ;
     ?>
 </body>
 </body>

@@ -9,5 +9,3 @@
     if ( $emailCimEll ) {
         $registration -> regisztraciosIgenyBekuldese ( $_POST [ 'nev' ], $_POST [ 'email' ], $_POST  [ 'jelszo' ] );
     }
-
-    //$registration -> regisztraciosIgenyBekuldese($_POST['nev'], $_POST['email'], $_POST['jelszo']);

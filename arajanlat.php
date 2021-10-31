@@ -93,7 +93,7 @@ $page = $_GET['page'] ?? 'administration';
 
 
             <div class="row">
-<table class="table table-hover">
+            <table class="table table-hover">
     <thead>
             <th class="text-center" scope="col">Cikkszám</th>
             <th class="text-center" scope="col">Gyártó</th>
@@ -146,7 +146,7 @@ $page = $_GET['page'] ?? 'administration';
     <?php
     include 'links/link.bootstrap.js.php';
     include 'links/link.jquery.script.php';
-    include 'scripts/script.arajanlat.js.php';
+    include 'scripts/script.keresomezo.js.php';
     ?>
 </body>
 </html>

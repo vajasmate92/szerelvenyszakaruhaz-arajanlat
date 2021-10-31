@@ -47,34 +47,32 @@
                     console . log ( data );
 
                     if ( data == 'Ez az email cím nem létezik' ) {
-
+                        event . preventDefault ();
                         uzenetLista . append ( "<li>" + data +"</li>" );
                             hibaUzenetAblak . addClass( "alert alert-danger alert-dismissible fade show" );
                                 inputEmail . addClass ( "border-danger" );
                                     hibaUzenetAblak . show ();
                                         hiba = true;
 
-                    } if ( data == 'A jelszó nem helyes a megadott email címhez' ) {
-
+                    } else if ( data == 'A jelszó nem helyes a megadott email címhez' ) {
+                        event . preventDefault ();
                         uzenetLista . append ( "<li>" + data +"</li>" );
                             hibaUzenetAblak . addClass ( "alert alert-danger alert-dismissible fade show" );
                                 inputEmail . addClass ( "border-danger") ;
                                     hibaUzenetAblak . show ();
                                         hiba = true;
 
-                    } if ( data == 'A felhasználó nincs aktiválva!' ) {
-
+                    } else if ( data == 'A felhasználó nincs aktiválva!' ) {
+                        event . preventDefault ();
                         uzenetLista . append ( "<li>" + data +"</li>" );
                             hibaUzenetAblak . addClass ( "alert alert-danger alert-dismissible fade show" );
                                 inputEmail . addClass ( "border-danger" );
                                     hibaUzenetAblak . show ();
                                         hiba = true;
 
-                    } 
-                        
-                        window . location . assign ( 'administration.php' );
-
-
+                    } else {    
+                     window . location . assign ( 'administration.php' );
+                     }   
                         }
                     )
                 }

@@ -91,13 +91,9 @@ CREATE TABLE `arajanlatok`.`arajanlat`(
     `arajanlat_cimzett_nev` VARCHAR(255) NOT NULL,
     `arajanlat_cimzett_varos` VARCHAR(255) NOT NULL,
     `arajanlat_cimzett_irsz` INT(4) NOT NULL,
-    `arajanlat_cimzett_cim_utca_hazszam` INT(4) NOT NULL,
+    `arajanlat_cimzett_cim_utca_hazszam` VARCHAR(255) NOT NULL,
+    `arajanlat_tabla` VARCHAR (255) NOT NULL,
     PRIMARY KEY (`PK_id`),
     FOREIGN KEY (`FK_letrehozo_partner_id`) REFERENCES `arajanlatok`.`partnerek`(`PK_id`)
 );
-
-CREATE TABLE `arajanlatok`.`arajanlat_tartalom_id=`(
-    `FK_termek_id` INT(8) NOT NULL,
-    FOREIGN KEY (`FK_termek_id`) REFERENCES `arajanlatok`.`gyartok`(`PK_id`)
-)
 

@@ -94,7 +94,7 @@ class View extends PDOConn {
         `termekcsoportok`.`termekcsoport`,
         `termekcsoportok`.`FK_gyarto_id`,
         `termekcsoportok`.`allapot`,
-        `gyartok`.`PK_id`,
+        `termekcsoportok`.`PK_id`,
         `gyartok`.`gyarto`
     FROM
         `gyartok`
@@ -210,6 +210,41 @@ class View extends PDOConn {
         $stmt -> execute ();
     
         return $fetchedRowData = $stmt -> fetchAll ();
+    }
+
+    public function arajanlatokMegjelenit (
+        $partnerID
+    ) {
+        $sql =
+        'SELECT
+            `arajanlat`.`arajanlat_nev`,
+            `arajanlat`.`allapot`,
+            `arajanlat`.`arajanlat_cimzett_nev`,
+            `arajanlat`.`arajanlat_cimzett_varos`,
+            `arajanlat`.`arajanlat_cimzett_irsz`,
+            `arajanlat`.`arajanlat_cimzett_cim_utca_hazszam`,
+            `arajanlat`.`arajanlat_tabla`
+        FROM
+            `arajanlat`
+        WHERE
+            `FK_letrehozo_partner_id` = :partnerID;';
+
+        $stmt = $this -> pdoConnect () -> prepare ( $sql );
+        $stmt -> bindParam ( ':partnerID', $partnerID );
+        $stmt -> execute ();
+
+        return $fetchedRowData = $stmt -> fetchAll ();
+    }
+
+    public function adminisztratorokLekerese () {
+        $sql = 
+        "SELECT * FROM `arajanlatok`.`adminisztratorok`;";
+        
+        $stmt = $this -> pdoConnect () -> prepare ( $sql );
+        $stmt -> execute ();
+        $fetchedPartnerek = $stmt -> fetch();
+
+        return $fetchedPartnerek;
     }
 
 }
